@@ -92,7 +92,6 @@ export const Register = () => {
                   Your Name
                 </label>
                 <input
-                  id="LoggingEmailAddress"
                   className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#3282B8]"
                   type="text"
                   name="name"
@@ -107,7 +106,6 @@ export const Register = () => {
                   Your Photo URL
                 </label>
                 <input
-                  id="LoggingEmailAddress"
                   className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#3282B8]"
                   type="text"
                   name="photo"
@@ -122,7 +120,6 @@ export const Register = () => {
                   Your Email Address
                 </label>
                 <input
-                  id="LoggingEmailAddress"
                   className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#3282B8]"
                   type="email"
                   name="email"
@@ -140,7 +137,6 @@ export const Register = () => {
                 </div>
     
                 <input
-                  id="loggingPassword"
                   className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#3282B8]"
                   type="password"
                   name="password"
