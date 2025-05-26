@@ -162,7 +162,8 @@ export const Navbar = () => {
                     <div className="rounded-full ring ring-[#3282B8] ring-offset-base-100 ring-offset-2">
                       <img
                         alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        referrerPolicy="no-referrer"
+                        src={user && user?.photoURL}
                       />
                     </div>
                   </div>

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { Link } from "react-router";
 import registerLottie from "../../assets/lotties/signin.json";
@@ -6,7 +8,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 export const Signin = () => {
-  const { signinUser, loading, setLoading } = use(AuthContext);
+  const { signinUser, loading, setLoading, socialSignin } = use(AuthContext);
   const handleSignin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,6 +20,16 @@ export const Signin = () => {
         toast.success("Sign In successfully!");
         setLoading(false);
         form.reset();
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+  const handleGoogleSignin = () => {
+    socialSignin()
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Google Sign In successful!");
       })
       .catch((err) => {
         toast.error(err.message);
@@ -49,9 +61,14 @@ export const Signin = () => {
           >
             Welcome back!
           </p>
-          <a
-            href="#"
-            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 "
+          <motion.button
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 10px 20px rgba(15, 76, 117, 0.2)",
+            }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleGoogleSignin}
+            className="flex items-center cursor-pointer justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 w-full "
           >
             <div className="px-4 py-2">
               <svg className="w-6 h-6" viewBox="0 0 40 40">
@@ -74,9 +91,15 @@ export const Signin = () => {
               </svg>
             </div>
             <span className="w-5/6 px-4 py-3 font-semibold text-center">
-              Sign In with Google
+              {loading ? (
+                <span className="animate-spin flex items-center justify-center ">
+                  <ImSpinner9 size={26} />
+                </span>
+              ) : (
+                "Sign Up with Google"
+              )}
             </span>
-          </a>
+          </motion.button>
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b lg:w-1/4"></span>
             <span className="text-xs text-center text-gray-500 uppercase ">
@@ -119,7 +142,12 @@ export const Signin = () => {
               />
             </div>
             <div className="mt-6">
-              <button
+              <motion.button
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: "0 10px 20px rgba(15, 76, 117, 0.2)",
+                }}
+                whileTap={{ scale: 0.95 }}
                 type="submit"
                 className="w-full cursor-pointer px-6 py-3 md:text-lg font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg focus:outline-none focus:ring focus:ring-[#3282B8] focus:ring-opacity-50"
                 style={{
@@ -133,7 +161,7 @@ export const Signin = () => {
                 ) : (
                   "Sign In"
                 )}
-              </button>
+              </motion.button>
             </div>
           </form>
 

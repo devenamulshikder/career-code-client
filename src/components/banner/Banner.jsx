@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import team1 from "../../assets/bannerIMG/team1.jpg";
 import team2 from "../../assets/bannerIMG/team2.jpg";
