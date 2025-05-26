@@ -1,5 +1,16 @@
+import { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 export const Navbar = () => {
+  const { user, signoutUser } = use(AuthContext);
+  const handleSignout = ()=>{
+    signoutUser().then(() => {
+      toast.success("Logout successfully!");
+    }).catch((err) => {
+      toast.error(err.message);
+    });
+  }
   return (
     <div className="bg-base-100 shadow-sm top-0 sticky z-50">
       <div className="">
@@ -140,26 +151,63 @@ export const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end text-lg gap-3 mr-3 md:gap-6 md:mr-6">
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
-                  : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
-              }
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
-                  : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
-              }
-            >
-              Register
-            </NavLink>
+            {user ? (
+              <>
+                <div className="dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="rounded-full ring ring-[#3282B8] ring-offset-base-100 ring-offset-2">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      />
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-32 p-2 shadow"
+                  >
+                    <li>
+                      <button className="text-sm font-semibold">Profile</button>
+                    </li>
+                    <li>
+                      <button
+                        className="text-sm font-semibold"
+                        onClick={handleSignout}
+                      >
+                        Sign Out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
+                      : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+                  }
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
+                      : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+                  }
+                >
+                  Register
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </div>

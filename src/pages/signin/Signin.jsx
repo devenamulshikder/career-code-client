@@ -1,41 +1,32 @@
-/* eslint-disable no-unused-vars */
 import Lottie from "lottie-react";
 import { Link } from "react-router";
-import registerLottie from "../../assets/lotties/register2.json";
+import registerLottie from "../../assets/lotties/signin.json";
 import { use } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
-export const Register = () => {
-  const { createUser, loading, setLoading } = use(AuthContext);
-  const handleSignup = (e) => {
+export const Signin = () => {
+  const { signinUser, loading, setLoading } = use(AuthContext);
+  const handleSignin = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    const userInfo = {
-      name,
-      photo,
-      email,
-      password,
-    };
-    createUser(email, password)
+    signinUser(email, password)
       .then((result) => {
         console.log(result.user);
-        toast.success("Registration successful!");
-        form.reset();
+        toast.success("Sign In successfully!");
         setLoading(false);
+        form.reset();
       })
       .catch((err) => {
         toast.error(err.message);
       });
   };
   return (
-    <div>
+    <div className="md:my-18">
       <title>Career Code | Register</title>
-      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
+      <div className="flex flex-row-reverse w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
         <div className="hidden my-auto p-4 bg-cover lg:block lg:w-1/2">
           <Lottie animationData={registerLottie} loop={true}></Lottie>
         </div>
@@ -54,9 +45,9 @@ export const Register = () => {
               backgroundClip: "text",
               color: "transparent",
             }}
-            className="text-2xl text-center text-gray-600 "
+            className=" text-2xl mb-5 text-center text-gray-600 "
           >
-            Create Your Account!
+            Welcome back!
           </p>
           <a
             href="#"
@@ -83,48 +74,17 @@ export const Register = () => {
               </svg>
             </div>
             <span className="w-5/6 px-4 py-3 font-semibold text-center">
-              Sign Up with Google
+              Sign In with Google
             </span>
           </a>
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b lg:w-1/4"></span>
             <span className="text-xs text-center text-gray-500 uppercase ">
-              or sign up with email
+              or login with email
             </span>
             <span className="w-1/5 border-b lg:w-1/4"></span>
           </div>
-
-          <form onSubmit={handleSignup}>
-            <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="LoggingEmailAddress"
-              >
-                Your Name
-              </label>
-              <input
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#3282B8]"
-                type="text"
-                name="name"
-                required
-                placeholder="Enter your name"
-              />
-            </div>
-            <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="LoggingEmailAddress"
-              >
-                Your Photo URL
-              </label>
-              <input
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-[#3282B8]"
-                type="text"
-                name="photo"
-                required
-                placeholder="Enter your Photo URL"
-              />
-            </div>
+          <form onSubmit={handleSignin}>
             <div className="mt-4">
               <label
                 className="block mb-2 text-sm font-medium text-gray-600"
@@ -171,18 +131,19 @@ export const Register = () => {
                     <ImSpinner9 size={26} />
                   </span>
                 ) : (
-                  "Sign Up"
+                  "Sign In"
                 )}
               </button>
             </div>
           </form>
+
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b md:w-1/4"></span>
             <Link
-              to={"/login"}
+              to={"/register"}
               className="text-xs text-gray-500 uppercase hover:underline"
             >
-              or sign in
+              or sign up
             </Link>
             <span className="w-1/5 border-b md:w-1/4"></span>
           </div>
