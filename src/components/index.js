@@ -1,3 +1,5 @@
 export { Navbar} from './shared/Navbar'
 export { Footer} from './shared/Footer'
 export {Banner} from './banner/Banner'
+export { HotJobs } from './hotJobs/HotJobs'
+export { JobCard } from './hotJobs/JobCard'
