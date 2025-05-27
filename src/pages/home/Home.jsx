@@ -6,6 +6,7 @@ const hotJobsPromise = fetch("http://localhost:3000/jobs").then((res) =>
 export const Home = () => {
   return (
     <div>
+      <title>Career Code | Home</title>
       <Banner />
       <Suspense
         fallback={

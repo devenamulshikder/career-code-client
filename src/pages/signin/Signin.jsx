@@ -37,7 +37,7 @@ export const Signin = () => {
   };
   return (
     <div className="md:my-18">
-      <title>Career Code | Register</title>
+      <title>Career Code | Login</title>
       <div className="flex flex-row-reverse w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
         <div className="hidden my-auto p-4 bg-cover lg:block lg:w-1/2">
           <Lottie animationData={registerLottie} loop={true}></Lottie>
