@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { use } from "react";
 import { useParams } from "react-router";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -9,7 +10,8 @@ import {
   FaUser,
   FaEnvelope,
 } from "react-icons/fa";
-
+import axios from "axios";
+import toast from "react-hot-toast";
 export const JobApply = () => {
   const { id: jobId } = useParams();
   const { user } = use(AuthContext);
@@ -28,14 +30,23 @@ export const JobApply = () => {
       linkedin,
       github,
       resume,
+      applicant: user?.email,
     };
-    console.log(applicationData);
+    axios
+      .post("http://localhost:3000/applications", applicationData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Application submitted successfully!");
+        }
+        form.reset();
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#3282B8]/10 to-[#0F4C75]/10 py-12 px-4 sm:px-6 lg:px-8">
       <title>Career Code | Job Application</title>
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -50,7 +61,6 @@ export const JobApply = () => {
             Complete the form below to apply for this position
           </p>
         </div>
-
         <form
           onSubmit={handleSubmit}
           className="bg-white rounded-xl shadow-lg overflow-hidden"
@@ -58,7 +68,7 @@ export const JobApply = () => {
           <div className="p-8">
             {/* Name Field */}
             <div className="mb-6">
-              <label className="block text-gray-700 font-medium mb-2 flex items-center">
+              <label className=" text-gray-700 font-medium mb-2 flex items-center">
                 <FaUser className="mr-2 text-[#3282B8]" />
                 Your Name
               </label>
@@ -75,7 +85,7 @@ export const JobApply = () => {
 
             {/* Email Field */}
             <div className="mb-6">
-              <label className="block text-gray-700 font-medium mb-2 flex items-center">
+              <label className=" text-gray-700 font-medium mb-2 flex items-center">
                 <FaEnvelope className="mr-2 text-[#0F4C75]" />
                 Email Address
               </label>
@@ -92,7 +102,7 @@ export const JobApply = () => {
 
             {/* LinkedIn Field */}
             <div className="mb-6">
-              <label className="block text-gray-700 font-medium mb-2 flex items-center">
+              <label className=" text-gray-700 font-medium mb-2 flex items-center">
                 <FaLinkedin className="mr-2 text-[#0077B5]" />
                 LinkedIn Profile
               </label>
@@ -108,7 +118,7 @@ export const JobApply = () => {
 
             {/* GitHub Field */}
             <div className="mb-6">
-              <label className="block text-gray-700 font-medium mb-2 flex items-center">
+              <label className=" text-gray-700 font-medium mb-2 flex items-center">
                 <FaGithub className="mr-2 text-gray-800" />
                 GitHub Profile
               </label>
@@ -124,7 +134,7 @@ export const JobApply = () => {
 
             {/* Resume Field */}
             <div className="mb-8">
-              <label className="block text-gray-700 font-medium mb-2 flex items-center">
+              <label className=" text-gray-700 font-medium mb-2 flex items-center">
                 <FaFileAlt className="mr-2 text-[#0F4C75]" />
                 Resume/CV Link
               </label>
