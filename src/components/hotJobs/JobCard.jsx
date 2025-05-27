@@ -79,8 +79,6 @@ export const JobCard = ({ jobs }) => {
               </motion.div>
             ))}
           </div>
-
-          {/* Apply Button */}
           <div className="mt-auto">
             <Link to={`/job/${jobs._id}`}>
               <motion.button
@@ -94,7 +92,7 @@ export const JobCard = ({ jobs }) => {
                   background: "linear-gradient(to right, #3282B8, #0F4C75)",
                 }}
               >
-                Apply Now
+                Show Details
               </motion.button>
             </Link>
           </div>

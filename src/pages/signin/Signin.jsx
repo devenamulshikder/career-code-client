@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import registerLottie from "../../assets/lotties/signin.json";
 import { use } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 export const Signin = () => {
   const { signinUser, loading, setLoading, socialSignin } = use(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleSignin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,9 +18,10 @@ export const Signin = () => {
     const password = form.password.value;
     signinUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        const user = result.user;
         toast.success("Sign In successfully!");
         setLoading(false);
+        navigate(location?.state ? location?.state : "/");
         form.reset();
       })
       .catch((err) => {
@@ -28,8 +31,9 @@ export const Signin = () => {
   const handleGoogleSignin = () => {
     socialSignin()
       .then((result) => {
-        console.log(result.user);
+        const user = result.user;
         toast.success("Google Sign In successful!");
+        navigate(location?.state ? location?.state : '/')
       })
       .catch((err) => {
         toast.error(err.message);

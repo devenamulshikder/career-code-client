@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import registerLottie from "../../assets/lotties/register2.json";
 import { use } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
 export const Register = () => {
   const { createUser, loading, setLoading, socialSignin } = use(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleSignup = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,10 +26,11 @@ export const Register = () => {
     };
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        const user = result.user;
         toast.success("Registration successful!");
-        form.reset();
+        navigate(location?.state ? location?.state : "/");
         setLoading(false);
+        form.reset();
       })
       .catch((err) => {
         toast.error(err.message);
@@ -37,13 +40,14 @@ export const Register = () => {
   const handleGoogleSignin = () => {
     socialSignin()
       .then((result) => {
-        console.log(result.user);
+        const user = result.user;
+        navigate(location?.state ? location?.state : "/");
         toast.success("Google Sign In successful!");
       })
       .catch((err) => {
         toast.error(err.message);
       });
-  }
+  };
   return (
     <div>
       <title>Career Code | Register</title>

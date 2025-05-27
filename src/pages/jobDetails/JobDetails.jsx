@@ -23,14 +23,14 @@ export const JobDetails = () => {
     salaryRange,
     experience,
     jobType,
-    postedDate,
+    _id,
     responsibilities,
   } = jobDetails;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <title>
-        Career Code | {title} at {company}
+        Career Code | Job Details
       </title>
 
       <motion.div
@@ -93,7 +93,7 @@ export const JobDetails = () => {
           </div>
 
           <div className="px-8 py-4 bg-gradient-to-r from-[#3282B8]/10 to-[#0F4C75]/10">
-            <Link>
+            <Link to={`/jobApply/${_id}`}>
               <motion.button
                 whileHover={{
                   scale: 1.02,

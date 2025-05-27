@@ -1,7 +1,15 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../layouts/Root";
-import { ErrorPages, Home, JobDetails, Register, Signin } from "../pages";
+import {
+  ErrorPages,
+  Home,
+  JobApply,
+  JobDetails,
+  Register,
+  Signin,
+} from "../pages";
 import { Loader } from "../components";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +23,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "/job/:id",
-        Component: JobDetails,
+        element: <JobDetails />,
         hydrateFallbackElement: <Loader />,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/jobs/${params.id}`),
-        
+      },
+      {
+        path: "/jobApply/:id",
+        element: (
+          <PrivateRoute>
+            <JobApply />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",
