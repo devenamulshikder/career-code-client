@@ -5,6 +5,7 @@ import {
   Home,
   JobApply,
   JobDetails,
+  MyApplications,
   Register,
   Signin,
 } from "../pages";
@@ -33,6 +34,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <JobApply />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myApplications",
+        element: (
+          <PrivateRoute>
+            <MyApplications />
           </PrivateRoute>
         ),
       },

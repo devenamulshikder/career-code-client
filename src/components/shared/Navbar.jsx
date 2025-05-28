@@ -4,13 +4,15 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 export const Navbar = () => {
   const { user, signoutUser } = use(AuthContext);
-  const handleSignout = ()=>{
-    signoutUser().then(() => {
-      toast.success("Logout successfully!");
-    }).catch((err) => {
-      toast.error(err.message);
-    });
-  }
+  const handleSignout = () => {
+    signoutUser()
+      .then(() => {
+        toast.success("Logout successfully!");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
   return (
     <div className="bg-base-100 shadow-sm top-0 sticky z-50">
       <div className="">
@@ -52,16 +54,18 @@ export const Navbar = () => {
                 >
                   Home
                 </NavLink>
-                <NavLink
-                  to="/contactUs"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
-                      : "text-[16px] relative cursor-pointer"
-                  }
-                >
-                  Contact Us
-                </NavLink>
+                {user && (
+                  <NavLink
+                    to="/contactUs"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
+                        : "text-[16px] relative cursor-pointer"
+                    }
+                  >
+                    My Applications
+                  </NavLink>
+                )}
                 <NavLink
                   to="/findmore"
                   className={({ isActive }) =>
@@ -85,7 +89,7 @@ export const Navbar = () => {
               </ul>
             </div>
             <div className="navbar-start md:flex">
-              <Link to="/" className="flex items-center gap-2">
+              <Link to={'/'} className="flex items-center gap-2">
                 <img
                   width={40}
                   src="https://i.postimg.cc/FKwHpfHx/career-code.png"
@@ -118,16 +122,18 @@ export const Navbar = () => {
               >
                 Home
               </NavLink>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
-                    : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
-                }
-              >
-                About
-              </NavLink>
+              {user && (
+                <NavLink
+                  to="/myApplications"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
+                      : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+                  }
+                >
+                  My Applications
+                </NavLink>
+              )}
               <NavLink
                 to="/dsf"
                 className={({ isActive }) =>
