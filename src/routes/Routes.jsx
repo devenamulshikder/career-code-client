@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../layouts/Root";
 import {
+  AddJobs,
   ErrorPages,
   Home,
   JobApply,
@@ -44,6 +45,14 @@ export const router = createBrowserRouter([
             <MyApplications />
           </PrivateRoute>
         ),
+      },
+      {
+        path:'/addJob',
+        element:(
+          <PrivateRoute>
+            <AddJobs/>
+          </PrivateRoute>
+        )
       },
       {
         path: "/register",

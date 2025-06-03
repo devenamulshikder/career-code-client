@@ -66,16 +66,18 @@ export const Navbar = () => {
                     My Applications
                   </NavLink>
                 )}
-                <NavLink
-                  to="/findmore"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
-                      : "text-[16px] relative cursor-pointer"
-                  }
-                >
-                  Find More
-                </NavLink>
+                {user && (
+                  <NavLink
+                    to="/addJob"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
+                        : "text-[16px] relative cursor-pointer"
+                    }
+                  >
+                    Add Job
+                  </NavLink>
+                )}
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>
@@ -89,7 +91,7 @@ export const Navbar = () => {
               </ul>
             </div>
             <div className="navbar-start md:flex">
-              <Link to={'/'} className="flex items-center gap-2">
+              <Link to={"/"} className="flex items-center gap-2">
                 <img
                   width={40}
                   src="https://i.postimg.cc/FKwHpfHx/career-code.png"
@@ -134,16 +136,18 @@ export const Navbar = () => {
                   My Applications
                 </NavLink>
               )}
-              <NavLink
-                to="/dsf"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
-                    : " text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
-                }
-              >
-                Find More
-              </NavLink>
+              {user && (
+                <NavLink
+                  to="/addJob"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
+                      : " text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+                  }
+                >
+                  Add Job
+                </NavLink>
+              )}
               <NavLink
                 to="/contact"
                 className={({ isActive }) =>
