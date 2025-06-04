@@ -42,7 +42,7 @@ export const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-32 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-36 p-2 shadow"
               >
                 <NavLink
                   to="/"
@@ -56,7 +56,7 @@ export const Navbar = () => {
                 </NavLink>
                 {user && (
                   <NavLink
-                    to="/contactUs"
+                    to="/myApplications"
                     className={({ isActive }) =>
                       isActive
                         ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
@@ -78,16 +78,18 @@ export const Navbar = () => {
                     Add Job
                   </NavLink>
                 )}
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
-                      : "text-[16px] relative cursor-pointer"
-                  }
-                >
-                  About
-                </NavLink>
+                {user && (
+                  <NavLink
+                    to="/myPostedJobs"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-lg hover:bg-transparent"
+                        : "text-[16px] relative cursor-pointer"
+                    }
+                  >
+                    My Added Jobs
+                  </NavLink>
+                )}
               </ul>
             </div>
             <div className="navbar-start md:flex">
@@ -148,16 +150,18 @@ export const Navbar = () => {
                   Add Job
                 </NavLink>
               )}
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
-                    : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
-                }
-              >
-                Contact Us
-              </NavLink>
+              {user && (
+                <NavLink
+                  to="/myPostedJobs"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gradient-to-r from-[#3282B8] to-[#0c3856] bg-clip-text text-transparent text-xl hover:bg-transparent border-[#3282B8] border-b-3"
+                      : "text-xl relative after:bg-[#3282B8] after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+                  }
+                >
+                  My Added Jobs
+                </NavLink>
+              )}
             </ul>
           </div>
           <div className="navbar-end text-lg gap-3 mr-3 md:gap-6 md:mr-6">
