@@ -10,6 +10,7 @@ import {
   MyPostedJobs,
   Register,
   Signin,
+  ViewApplications,
 } from "../pages";
 import { Loader } from "../components";
 import PrivateRoute from "./PrivateRoute";
@@ -62,6 +63,17 @@ export const router = createBrowserRouter([
             <MyPostedJobs />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/applications/:job_id",
+        element: (
+          <PrivateRoute>
+            <ViewApplications />
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loader />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/applications/job/${params.job_id}`),
       },
       {
         path: "/register",

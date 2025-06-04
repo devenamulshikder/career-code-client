@@ -8,7 +8,6 @@ export const MyPostedJobs = () => {
   const { user } = use(AuthContext);
   return (
     <div>
-      here is my posted jobs
       <Suspense fallback={<Loader />}>
         <JobList jobsCreatedByPromise={jobsCreatedByPromise(user?.email)} />
       </Suspense>
