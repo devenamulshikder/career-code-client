@@ -33,7 +33,7 @@ export const JobApply = () => {
       applicant: user?.email,
     };
     axios
-      .post("http://localhost:3000/applications", applicationData)
+      .post("https://career-code-server-neon.vercel.app/applications", applicationData)
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Application submitted successfully!");

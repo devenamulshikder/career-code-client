@@ -1,5 +1,5 @@
 export const jobsCreatedByPromise = (email) => {
-  return fetch(`http://localhost:3000/jobs?email=${email}`).then((res) =>
+  return fetch(`https://career-code-server-neon.vercel.app/jobs?email=${email}`).then((res) =>
     res.json()
   );
 };

@@ -6,7 +6,7 @@ export const ViewApplications = () => {
   const applications = useLoaderData();
   const handleStatusChange = (e, app_id) => {
     axios
-      .patch(`http://localhost:3000/applications/${app_id}`, {
+      .patch(`https://career-code-server-neon.vercel.app/applications/${app_id}`, {
         status: e.target.value,
       })
       .then((res) => {

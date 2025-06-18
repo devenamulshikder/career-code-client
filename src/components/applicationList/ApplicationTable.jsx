@@ -16,7 +16,7 @@ export const ApplicationTable = ({ application, idx, }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/applications/${id}`, {
+        fetch(`https://career-code-server-neon.vercel.app/applications/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

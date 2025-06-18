@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Banner, HotJobs } from "../../components";
-const hotJobsPromise = fetch("http://localhost:3000/jobs").then((res) =>
+const hotJobsPromise = fetch("https://career-code-server-neon.vercel.app/jobs").then((res) =>
   res.json()
 );
 export const Home = () => {

@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
         element: <JobDetails />,
         hydrateFallbackElement: <Loader />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/jobs/${params.id}`),
+          fetch(`https://career-code-server-neon.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/jobApply/:id",
@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
         ),
         hydrateFallbackElement: <Loader />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/applications/job/${params.job_id}`),
+          fetch(`https://career-code-server-neon.vercel.app/applications/job/${params.job_id}`),
       },
       {
         path: "/register",
