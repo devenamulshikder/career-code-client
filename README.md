@@ -1,4 +1,5 @@
 # Career Code Client
+![Project Banner](https://i.postimg.cc/zvWjzH3P/Screenshot-2025-06-20-191759.png)
 
 A modern frontend web application built with **React 19**, **Vite**, **Tailwind CSS**, and Firebase. This project is part of the **Career Code** platform, aiming to deliver a responsive, dynamic, and fast-performing user experience.
 
